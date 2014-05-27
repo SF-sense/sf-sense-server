@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoURI = "mongodb://localhost:27017/sf-sense";
+mongoURI = process.env.MONGOHQ_URL || "mongodb://localhost:27017/sf-sense";
 mongoose.connect(mongoURI);
 
 var db = mongoose.connection;
