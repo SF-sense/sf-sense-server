@@ -1,0 +1,17 @@
+{
+  "name": "sf-sense-server",
+  "version": "0.0.1",
+  "description": "backend for sf-sense",
+  "main": "server.js",
+  "repository": "",
+  "license": "Proprietary",
+  "private": true,
+  "dependencies": {
+    "express": "~3.4.8",
+    "mongoose": "^3.8.11",
+    "morgan": "^1.1.1",
+    "jsdom": "^0.10.5",
+    "jquery": "^2.1.1",
+    "soda-js": "^0.2.1"
+  }
+}
