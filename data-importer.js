@@ -9,8 +9,9 @@ var Incident = require('./models/incident');
 **/
 exports.importData = function() {
 	var consumer = new soda.Consumer('data.sfgov.org');
-	consumer.query().withDataset('tmnf-yvry').limit(10).getRows()
+	consumer.query().withDataset('tmnf-yvry').getRows()
 	.on('success', function(jsonRows) {
+		console.log('importing data');
 		for (var i = 0; i < jsonRows.length; i++) {
 			var row = jsonRows[i];
 			var incident = new Incident({
