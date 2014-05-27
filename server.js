@@ -1,7 +1,7 @@
 var app = require('./server-config.js');
 
-var port = 1234;
+var port = Number(process.env.PORT || 1234);
 
-app.listen(port);
-
-console.log('Server now listening on port ' + port);
+app.listen(port, function() {
+	console.log('Server now listening on port ' + port);	
+});

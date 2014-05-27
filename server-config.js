@@ -16,6 +16,7 @@ app.configure(function(){
 data.importData();
 
 app.get('/data', handler.getData);
+app.get('/near', handler.getIncidentsNearAddress);
 
 scheduler.schedule();
 
