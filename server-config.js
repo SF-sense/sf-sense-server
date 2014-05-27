@@ -9,7 +9,8 @@ var scheduler = require('./scheduler');
 var app = express();
 
 app.configure(function(){
-	app.use(logger());
+	app.use(logger());				// logging
+	app.use(express.bodyParser()); 	// parse json data in body
 });
 
 // refresh data when opening a new connection

@@ -1,6 +1,13 @@
 var soda = require('soda-js');
 var Incident = require('./models/incident');
 
+
+
+cleanData = function() {
+	console.log('cleaning data');
+	Incident.find({}).remove().exec();
+}
+
 /**
 	fetch data from data.sfgov.org/resource/tmnf-yvry.json
 	called one time when making a new connection to the server,
@@ -8,6 +15,7 @@ var Incident = require('./models/incident');
 	refreshed every 24h)
 **/
 exports.importData = function() {
+	cleanData();
 	var consumer = new soda.Consumer('data.sfgov.org');
 	consumer.query().withDataset('tmnf-yvry').getRows()
 	.on('success', function(jsonRows) {
