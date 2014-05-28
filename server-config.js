@@ -16,8 +16,7 @@ app.configure(function(){
 // refresh data when opening a new connection
 data.importData();
 
-app.get('/data', handler.getData);
-app.get('/near', handler.getIncidentsNearAddress);
+app.get('/near', handler.getNear);
 
 scheduler.schedule();
 

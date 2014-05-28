@@ -10,9 +10,14 @@ var incidentSchema = mongoose.Schema({
 	day : {type : String},
 	resolution : {type : String},
 	date : {type : String},
-	longitude : {type : String},
-	latitude : {type : String}
+	longitude : Number,
+	latitude : Number,
+	coords : {type : [Number], index: '2dsphere'}
 });
+
+// incidentSchema.index({
+// 	coords: '2d'
+// });
 
 var Incident = mongoose.model('Incident', incidentSchema);
 

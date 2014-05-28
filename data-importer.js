@@ -32,8 +32,9 @@ exports.importData = function() {
 				day : row.dayofweek,
 				resolution : row.resolution,
 				date : row.date,
-				longitude : row.x,
-				latitude : row.y
+				longitude : parseFloat(row.x),
+				latitude : parseFloat(row.y),
+				coords : [parseFloat(row.x), parseFloat(row.y)]
 			});
 			incident.save(function(err, incident) {
 				if (err) {
