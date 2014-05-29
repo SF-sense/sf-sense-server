@@ -6,7 +6,7 @@ var Incident = require('./models/incident');
 cleanData = function() {
 	console.log('cleaning data');
 	Incident.find({}).remove().exec();
-}
+};
 
 /**
 	fetch data from data.sfgov.org/resource/tmnf-yvry.json
@@ -45,4 +45,5 @@ exports.importData = function() {
 	.on('error', function(error) {
 		console.error(error);
 	});	
-}
+};
+
