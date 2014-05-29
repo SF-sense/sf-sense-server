@@ -13,6 +13,7 @@
     "jsdom": "^0.10.5",
     "jquery": "^2.1.1",
     "soda-js": "^0.2.1",
-    "node-schedule": "^0.1.13"
+    "node-schedule": "^0.1.13",
+    "underscore": "^1.6.0"
   }
 }
