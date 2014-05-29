@@ -1,8 +1,9 @@
 sf-sense-server
 ===============
 
-sf-sense rest api
+sf-sense accessible on http://sf-sense-server.herokuapp.com/near
+-----------------
 
-a rest api for sf-sense accessible on http://sf-sense-server.herokuapp.com
-/data gives access to the last 1000 incidents
-/near gives access to the nearby incidents
+- rest api giving you a list of incidents in san francisco
+- /near?longitude=[longitude]&latitude=[latitude] is mandatory
+- distance (in kilometers), category (ROBBERY, ASSAULT, TRESPASS... see http://data.sfgov.org/resource/tmnf-yvry.json), time (night or day) are optionnal
