@@ -14,6 +14,8 @@
     "jquery": "^2.1.1",
     "soda-js": "^0.2.1",
     "node-schedule": "^0.1.13",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "passport-localapikey": "0.0.3",
+    "passport": "^0.2.0"
   }
 }
