@@ -6,6 +6,34 @@ cleanData = function() {
 	Incident.find({}).remove().exec();
 };
 
+isAssault = function(category) {
+	return category === "ASSAULT" || category === "KIDNAPPING" ||
+		category === "SEX OFFENSES, FORCIBLE" || category === "ROBBERY";
+};
+
+isTheft = function(category) {
+	return category === "LARCENY/THEFT" || category === "VEHICLE THEFT";
+};
+
+filterType = function(category, descript) {
+	if (isAssault(category)){
+		return "assault"
+	} else if (isTheft(category)) {
+		return "theft";
+	}
+	return "other";
+};
+
+customizeCategories = function(row) {
+	if (isTheft(row.category) && row.descript.indexOf("BICYCLE")) {
+		row.category = "BICYCLE THEFT";
+	}
+	if (isAssault(row.category) && (row.descript.indexOf("KNIFE") ||
+		row.descript.indexOf("WEAPON") || row.descript.indexOf("GUN"))) {
+		row.category = "ASSAULT WITH A DEADLY WEAPON";
+	}
+};
+
 /**
 	fetch data from data.sfgov.org/resource/tmnf-yvry.json
 	called one time when making a new connection to the server,
@@ -20,10 +48,13 @@ exports.importData = function() {
 		console.log('importing data');
 		for (var i = 0; i < jsonRows.length; i++) {
 			var row = jsonRows[i];
+			var type = filterType(row.category, row.descript);
+			customizeCategories(row);
 			var incident = new Incident({
 				id : i,
 				time : row.time,
 				category : row.category,
+				type : type,
 				district : row.pddistrict,
 				address : row.address,
 				day : row.dayofweek,

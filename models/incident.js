@@ -4,6 +4,7 @@ var incidentSchema = mongoose.Schema({
 	id: { type: String, required: true, index: { unique: true } },
 	time: {type : String},
 	category: {type : String},
+	type : {type : String},
 	district: {type : String},
 	address: {type : String},
 	descript: {type : String},
