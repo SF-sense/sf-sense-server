@@ -1,8 +1,6 @@
 var soda = require('soda-js');
 var Incident = require('./models/incident');
 
-
-
 cleanData = function() {
 	console.log('cleaning data');
 	Incident.find({}).remove().exec();
@@ -13,7 +11,7 @@ cleanData = function() {
 	called one time when making a new connection to the server,
 	and should be called once a day to refresh data (the source is 
 	refreshed every 24h)
-**/
+**/	
 exports.importData = function() {
 	cleanData();
 	var consumer = new soda.Consumer('data.sfgov.org');
@@ -28,12 +26,12 @@ exports.importData = function() {
 				category : row.category,
 				district : row.pddistrict,
 				address : row.address,
-				decription : row.descript,
 				day : row.dayofweek,
 				resolution : row.resolution,
 				date : row.date,
+				descript : row.descript,
 				longitude : parseFloat(row.x),
-				latitude : parseFloat(row.y)
+				latitude : parseFloat(row.y),
 			});
 			incident.save(function(err, incident) {
 				if (err) {
