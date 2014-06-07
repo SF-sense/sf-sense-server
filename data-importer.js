@@ -1,5 +1,6 @@
 var soda = require('soda-js');
 var Incident = require('./models/incident');
+var moment = require('moment');
 
 cleanData = function() {
 	console.log('cleaning data');
@@ -36,8 +37,13 @@ customizeCategories = function(row) {
 
 addDateAndTimeToDescription = function(row) {
 	var d = new Date(row.date * 1000);
-	var dateStr = ''+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
-	row.descript += '\non ' + dateStr + ' at ' + row.time;
+	d.setHours(parseInt(row.time.substring(0, 2)));
+	d.setMinutes(parseInt(row.time.substring(3, 5)));
+	var incidentTime = moment(d);
+	var nowTime = moment(new Date());
+
+
+	row.descript += '\n' + incidentTime.from(nowTime) + ' at ' + row.time;
 } ;
 
 /**
@@ -66,7 +72,7 @@ exports.importData = function() {
 				address : row.address,
 				day : row.dayofweek,
 				resolution : row.resolution,
-				tes : row.date,
+				date : row.date,
 				descript : row.descript,
 				longitude : parseFloat(row.x),
 				latitude : parseFloat(row.y),
