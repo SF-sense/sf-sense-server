@@ -34,6 +34,12 @@ customizeCategories = function(row) {
 	}
 };
 
+addDateAndTimeToDescription = function(row) {
+	var d = new Date(row.date * 1000);
+	var dateStr = ''+(d.getMonth()+1)+'/'+d.getDate()+'/'+d.getFullYear();
+	row.descript += '\non ' + dateStr + ' at ' + row.time;
+} ;
+
 /**
 	fetch data from data.sfgov.org/resource/tmnf-yvry.json
 	called one time when making a new connection to the server,
@@ -50,6 +56,7 @@ exports.importData = function() {
 			var row = jsonRows[i];
 			var type = filterType(row.category, row.descript);
 			customizeCategories(row);
+			addDateAndTimeToDescription(row);
 			var incident = new Incident({
 				id : i,
 				time : row.time,
@@ -59,7 +66,7 @@ exports.importData = function() {
 				address : row.address,
 				day : row.dayofweek,
 				resolution : row.resolution,
-				date : row.date,
+				tes : row.date,
 				descript : row.descript,
 				longitude : parseFloat(row.x),
 				latitude : parseFloat(row.y),
